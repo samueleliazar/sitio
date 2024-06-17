@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href={% static "../static/css/registro.css"%}>
+</head>
+<body>
+    <section class="form-register">
+        <h4>¿Olvido su contraseña?</h4>
+        <h>Le enviaremos a su correo un link para cambiar la contraseña!</h>
+        <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese Su Correo">
+        <p><a href={% url "login" %}>Siguiente</a></p>
+        <p><a href={% url "login" %}>¿Ya tengo cuenta?</a></p>
+    </section>
+    <script src={% static "../static/js/validaredit.js"%}></script>
+</body>
+</html>

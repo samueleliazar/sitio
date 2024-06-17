@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>editar clientes</title>
+    <link rel="stylesheet" href="{% static '../static/css/dashboard.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src={% static "js/bootstrap.bundle.min.js"%}></script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href={% url "dashboard" %}>
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href={% url "usuarios" %}>
+                    <i class="fas fa-user"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
+            <li>
+                <a href={% url "estadisticas" %}>
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Estadisticas</span>
+                </a>
+            </li>
+
+
+            <li>
+                <a href={% url "nuevosproductos" %}>
+                    <i class="fas fa-star"></i>
+                    <span>Productos</span>
+                </a>
+            </li>
+            <li>
+            </li>
+            <li class="logout">
+                <a href={% url "index" %}>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar sesion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2> Dashboard</h2>
+            </div>
+            <div class="user--info">
+                <div class="searh--box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Search" />
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>Modificar Datos de clientes</h1>
+            <form action="dashboard.html">
+                <div class="form">
+                    <div class="grupo">
+                        <label for="name">Nombre del Cliente</label>
+                        <input type="text" id="idname" name="name" placeholder="Ingrese nombre">
+                    </div>
+                    <div class="grupo">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" id="iddireccion" name="direccion"
+                            placeholder="Ingrese Direccion">
+                    </div>
+                    <div class="grupo">
+                        <label for="tel">Numero telefono</label>
+                        <input type="text" id="idtel" name="tel" placeholder="Ingrese su numero">
+                    </div>
+                    <div class="grupo">
+                        <label for="correo">Correo</label>
+                        <input type="text" id="idcorreo" name="correo" placeholder="John@Doe.com">
+                    </div>
+                    <div class="grupo">
+                        <label for="user">Tipo usuario</label>
+                        <input type="text" id="iduser" name="user" placeholder="Ingrese tipo usuario">
+                    </div>
+                    <div class="grupo">
+                        <label for="date">Fecha</label>
+                        <input type="date" id="iddate" name="date">
+                    </div>
+
+                    
+                    <input type="submit" onclick = 'return enviarformcliente();'  value="Confirmar Cambios">
+                    <p class="warnings" id="warnings"></p>
+                </div>
+            </form>
+            <div id = 'error'></div>
+
+        </div>
+
+        </div>
+        <script src={% static "../static/js/validaredit.js"%}></script>
+</body>
+
+</html>

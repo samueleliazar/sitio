@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="{% static '../static/css/contacto.css' %}">
+</head>
+<body>
+    <header class="header">
+        
+        <div class="menu contt">
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src={%static "../static/images/menu.png"%} class="menu-icono" alt="menu">
+            </label>
+            <nav class="navbar">
+            <input type="checkbox" id="menu">
+                <ul>
+                    <li><a href={% url "index" %}>Inicio</a></li>
+                </ul>
+            </nav>
+            
+            
+        </div>
+        
+    </header>
+    <div class="container">
+        <h1>Contacto</h1>
+        <form action="index.html">
+            <div class="form">
+                <div class="grupo">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="idname" name="name">
+                </div>
+                <div class="grupo">
+                    <label for="tel">telefono:</label>
+                    <input type ="text" id="idtel" name="tel">
+                </div>
+                <div class="grupo">
+                    <label for="correo">email:</label>
+                    <input type="text" id="idcorreo" name="correo">
+                </div>
+                <div class="grupo">
+                    <label for="mensaje">mensaje:</label>
+                    <input type="text" id="idmensaje" name="mensaje">
+                </div>
+                <input type="submit" onclick = 'return enviarformcontacto();' value="Enviar">
+                <p class="warnings" id="warnings"></p>
+            </div>     
+        </form>
+        <div id = 'error'></div>
+    </div> 
+</div>    
+<script src={% static "../static/js/validaredit.js"%}></script>
+</body>
+
+</html>

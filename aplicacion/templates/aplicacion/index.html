@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static '../static/css/style.css' %}">
+</head>
+<body>
+
+    <header class="header">
+
+        <div class="menu contt">
+            <a href="index.html" class="logo">iCellTechHub</a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src={% static "../static/images/menu.png"%} class="menu-icono" alt="menu">
+            </label>
+            <nav class="navbar">
+            <input type="checkbox" id="menu">
+                <ul>
+                    <li><a href={% url "index" %}>Inicio</a></li>
+                    <li><a href={% url "productos" %}>Productos</a></li>
+                    <li><a href={% url "contacto" %}>Contacto</a></li>
+                    <li><a href={% url "pedidos" %}>Pedidos</a></li>
+                    <li><a href={% url "login" %}><img src={% static "../static/images/klipartz.com.png"%} alt=""></a></li>
+                </ul>
+            </nav>
+            
+            
+        </div>
+
+        <div class="header-content contt">
+            <div class="header-txt">
+                <h1>Compra tu <span>Accesorio</span> <br> favorito aqui</h1>
+                <p>Esta pagina se creo gracias a la necesidad 
+                    de gente que necesita accesorios de IPhone,
+                    cualquier informacion que necesita rellene
+                    el formulario de contacto.
+                </p>
+                <div class="butons">
+                    <a href={% url "index" %} class="btn-1">Información</a>
+                    <a href={% url "productos" %} class="btn-1">Accesorios</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="popular contt">
+
+        <h2>Accesorios Populares</h2>
+
+        <div class="popular-content">
+            <img src={% static "../static/images/j1.png"%} alt="">
+            <img src={% static "../static/images/j2.webp"%} alt="">
+            <img src={% static "../static/images/j3.png"%} alt="">
+            <img src={% static "../static/images/j4.png"%} alt="">
+            <img src={% static "../static/images/j5.png"%} alt="">
+            <img src={% static "../static/images/j6.png"%} alt="">
+            <img src={% static "../static/images/j7.png"%} alt="">
+        </div>
+    </section>
+
+    <main class="product contt">
+
+        <h2>¡Las mejores ofertas!</h2>
+
+        <div class="producto-content">
+
+            <div class="product-1">
+                <img src={% static "../static/images/l1.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Fundas Para Airpods</h3>
+                    <div class="price">
+                        <p>$2.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/l2.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Carcasa Para IPhone</h3>
+                    <div class="price">
+                        <p>$5.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/12061366_928184450606453_315184282_n.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Carcasa Mac</h3>
+                    <div class="price">
+                        <p>$7.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/l4.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Apple Home</h3>
+                    <div class="price">
+                        <p>$155.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/pngwing.com.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Cargador 20 Watts</h3>
+                    <div class="price">
+                        <p>$20.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/airpods.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Audifonos AirPods</h3>
+                    <div class="price">
+                        <p>$15.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/l7.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Airtag</h3>
+                    <div class="price">
+                        <p>$80.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/teclado.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Teclado Apple</h3>
+                    <div class="price">
+                        <p>$300.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-1">
+                <img src={% static "../static/images/l9.png"%} alt="">
+                <div class="product-txt">
+                    <h3>Vision Pro(Usados)</h3>
+                    <div class="price">
+                        <p>$200.000</p>
+                        <a href={% url "comprar" %} class="btn-2">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <section class="contact contt">
+
+        <div class="contact-content">
+            <h3>Suscribete a nuestra pagina</h3>
+            <form>
+                <input type="email" placeholder="Escribe tu correo">
+                <input type="submit" class="btn-3" value="Enviar">
+            </form>
+        </div>
+
+    </section>
+
+
+    <footer class="footer contt">
+
+
+
+        <div class="link">
+            <ul>
+                <li><a href={% url "index" %}>Inicio</a></li>
+                <li><a href={% url "productos" %}>Productos</a></li>
+                <li><a href={% url "contacto" %}>Contacto</a></li>
+                <li><a href={% url "login" %}><img src={% static "../static/images/klipartz.com.png"%} alt=""></a></li>
+            </ul>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

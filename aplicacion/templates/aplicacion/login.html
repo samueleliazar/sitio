@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href={% static "../static/css/register.css" %}>
+    
+</head>
+
+<body>
+    
+    <div class="menu contt">
+        <a href={% url "index" %} class="logo">iCellTechHub</a>
+        <nav class="navbar">
+            <input type="checkbox" id="menu">
+            <label for="menu">
+                <img src={% static "../static/images/menu.png" %}class="menu-icono" alt="menu">
+            </label>
+            <ul>
+                <li><a href={% url "index" %}>Inicio</a></li>
+                <li><a href={% url "contacto" %}>Contacto</a></li>
+                <li><a href={% url "dashboard" %}>Admin</a></li>
+                <li><a href={% url "login" %}><img src={% static "../static/images/klipartz.com.png"%} alt=""></a></li>
+            </ul>
+        </nav>
+
+    </div>
+    <div class="formulario">
+        <h1>Inicio de sesion</h1>
+        <form method="post">
+            <div class="username">
+                <label for="name">Nombre de usuario</label>
+                <input type="text" id="idname" name="name">
+            </div>
+            <div class="username">
+                <label>Contraseña</label>
+                <input type="password" id="idcontraseña" name="contraseña">
+            </div>
+            <div class="recordar"><a href={% url "olvidocon" %}>¿Olvido su contraseña?</a></div>
+            <input type="submit" onclick = 'return enviarformlogin();' value="iniciar">
+            <p class="warnings" id="warnings"></p>
+            <div class="registrarse">
+                Quiero hacer el <a href={% url "usuariosnuevos" %}>registro</a>
+            </div>
+        </form>
+        <div id = 'error'></div>
+    </div>
+    <script src={% static "../static/js/validaredit.js"%}></script>
+
+</body>
+
+</html>
