@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf.urls.static import static
 
 from sitio import settings
-from .views import index, productos, contacto, comprar, pedidos, login, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, estadisticas, nuevosproductos, catalogo, editprod
+from .views import index, productos, contacto, comprar, pedidos, login, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, estadisticas, nuevosproductos, catalogo, editprod, eliminarprod
 
 urlpatterns = [
     path('',index,name='index'),
@@ -21,6 +21,7 @@ urlpatterns = [
     path('nuevosproductos/',nuevosproductos,name='nuevosproductos'),
     path('catalogo/', catalogo, name='catalogo'),
     path('editprod/<id>', editprod, name='editprod'),
+    path('eliminarprod/<id>',eliminarprod, name='eliminarprod')
 ]
 
 if settings.DEBUG:

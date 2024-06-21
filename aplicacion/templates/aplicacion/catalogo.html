@@ -77,7 +77,8 @@
                                 <th>Nombre </th>
                                 <th>descripcion</th>
                                 <th>Precio</th>
-                                <th>Accion</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                             </tr>
 
                     <tbody>
@@ -89,6 +90,7 @@
                             <td>{{p.descripcion}}</td>
                             <td>{{p.precio}}</td>
                             <td><a class="btn btn-primary" href="{% url "editprod" p.id %}" role="button" >Editar</a></td>
+                            <td><a class="btn btn-primary" href="{% url "eliminarprod" p.id %}" role="button" >Eliminar</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

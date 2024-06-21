@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Producto
 from .forms import ProductoForm, UpdateProductoForm
 from django.contrib import messages
+from os import path, remove
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 # Create your views here.
 def index(request):
@@ -86,3 +88,18 @@ def catalogo(request):
     }
     return render(request, 'aplicacion/catalogo.html', datos)
 
+def eliminarprod(request, id):
+    producto=get_object_or_404(Producto, id=id)
+    
+    datos={
+        "producto":producto
+    }
+    
+    if request.method=="POST":
+        if productos.imagen:
+            remove(path.join(str(settings.MEDIA_ROOT).replace('/media','')+productos.imagen.url))
+        productos.delete()
+        messages.error(request, 'Producto eliminado exitosamente')
+        return redirect(to='catalogo')
+    
+    return render(request, 'aplicacion/eliminarprod.html',datos)
