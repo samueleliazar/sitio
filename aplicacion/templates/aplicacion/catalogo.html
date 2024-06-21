@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dashboard</title>
-    <link rel="stylesheet" href={% static "../static/css/dashboard.css" %}/>
+    <link rel="stylesheet" href="{% static '../static/css/dashboard.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
@@ -32,8 +34,6 @@
                     <span>Estadisticas</span>
                 </a>
             </li>
-
- 
             <li>
                 <a href={% url "nuevosproductos" %}>
                     <i class="fas fa-star"></i>
@@ -46,8 +46,6 @@
                 <span>Catalogo</span>
             </a>
         </li>
-            <li>
-            </li>
             <li class="logout">
                 <a href={% url "index" %}>
                     <i class="fas fa-sign-out-alt"></i>
@@ -56,7 +54,6 @@
             </li>
         </ul>
     </div>
-
     <div class="main--content">
         <div class="header--wrapper">
             <div class="header--title">
@@ -69,33 +66,36 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h1>Estadísticas de la Página</h1>
-            <div class="stats-container">
-                <div class="stat">
-                    <h2>Usuarios conectados</h2>
-                    <p class="value">1000</p>
-                </div>
-                <div class="stat">
-                    <h2>Total ventas</h2>
-                    <p class="value">5000</p>
-                </div>
-                <div class="stat">
-                    <h2>Tiempo total en pagina</h2>
-                    <p class="value">300H</p>
-                </div>
-                <div class="stat">
-                    <h2>Usuarios Registrados</h2>
-                    <p class="value">500</p>
-                </div>
-            </div>
-        </div>
+        <div class="tabular--wrapper">
+            <h3 class="main--title">Catalogo</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Imagen</th>
+                                <th>Nombre </th>
+                                <th>descripcion</th>
+                                <th>Precio</th>
+                                <th>Accion</th>
+                            </tr>
 
-
-
-
-
+                    <tbody>
+                        {%for p in producto %}
+                        <tr>
+                            <td> {{p.id}}</td>
+                            <td><img src='{{p.imagen.url}}' alt={{p.nombre}} height="100"></td>
+                            <td>{{p.nombre}}</td>
+                            <td>{{p.descripcion}}</td>
+                            <td>{{p.precio}}</td>
+                            <td><a class="btn btn-primary" href="{% url "editprod" p.id %}" role="button" >Editar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+        
+    
  
+    <script src={% static "../static/js/api.js"%}></script>
 </body>
 
 </html>

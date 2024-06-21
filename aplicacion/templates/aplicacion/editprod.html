@@ -1,12 +1,13 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
-    <link rel="stylesheet" href={% static "../static/css/dashboard.css" %}/>
+    <title>agregarprod</title>
+    <link rel="stylesheet" href="{% static '../static/css/dashboard.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 
@@ -32,7 +33,7 @@
                     <span>Estadisticas</span>
                 </a>
             </li>
-
+            
  
             <li>
                 <a href={% url "nuevosproductos" %}>
@@ -69,33 +70,16 @@
                 </div>
             </div>
         </div>
+
         <div class="container">
-            <h1>Estadísticas de la Página</h1>
-            <div class="stats-container">
-                <div class="stat">
-                    <h2>Usuarios conectados</h2>
-                    <p class="value">1000</p>
-                </div>
-                <div class="stat">
-                    <h2>Total ventas</h2>
-                    <p class="value">5000</p>
-                </div>
-                <div class="stat">
-                    <h2>Tiempo total en pagina</h2>
-                    <p class="value">300H</p>
-                </div>
-                <div class="stat">
-                    <h2>Usuarios Registrados</h2>
-                    <p class="value">500</p>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
- 
-</body>
-
-</html>
+            <h1>Editar Productos</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="form" >
+                    {% csrf_token %}
+                    {{form | crispy}}
+                    <input type="submit" value="Editar Producto" class="btn btn-success btn-lg">
+                    <p class="warnings" id="warnings"></p>
+                </div>     
+            </form>
+            <div id = 'error'></div>
+        </div> 
