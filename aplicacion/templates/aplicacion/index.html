@@ -25,6 +25,14 @@
                     <li><a href={% url "contacto" %}>Contacto</a></li>
                     <li><a href={% url "pedidos" %}>Pedidos</a></li>
                     <li><a href={% url "login" %}><img src={% static "../static/images/klipartz.com.png"%} alt=""></a></li>
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="nav-link px-5 text-light" type="submit" > <strong>{{user.username}}  | Cerrar Sesión</strong></button>
+                    </form> 
+                {% else %}
+                    <a class="nav-link px-5 text-light" href="{% url 'login' %}" ><strong></strong></a>
+                {% endif %}
                 </ul>
             </nav>
             

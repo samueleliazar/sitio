@@ -21,7 +21,7 @@ def comprar(request):
 def pedidos(request):
     return render(request,'aplicacion/pedidos.html')
 
-def login(request):
+#def login(request):
     return render(request,'aplicacion/login.html')
 
 def olvidocon(request):

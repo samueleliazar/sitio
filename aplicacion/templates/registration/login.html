@@ -1,4 +1,6 @@
 {% load static %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -31,15 +33,8 @@
     <div class="formulario">
         <h1>Inicio de sesion</h1>
         <form method="post">
-            <div class="username">
-                <label for="name">Nombre de usuario</label>
-                <input type="text" id="idname" name="name">
-            </div>
-            <div class="username">
-                <label>Contraseña</label>
-                <input type="password" id="idcontraseña" name="contraseña">
-            </div>
-            <div class="recordar"><a href={% url "olvidocon" %}>¿Olvido su contraseña?</a></div>
+            {% csrf_token %}
+            {{form | crispy}}
             <input type="submit" onclick = 'return enviarformlogin();' value="iniciar">
             <p class="warnings" id="warnings"></p>
             <div class="registrarse">
