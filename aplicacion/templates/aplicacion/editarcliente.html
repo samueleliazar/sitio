@@ -67,35 +67,10 @@
 
         <div class="container">
             <h1>Modificar Datos de clientes</h1>
-            <form action="dashboard.html">
-                <div class="form">
-                    <div class="grupo">
-                        <label for="name">Nombre del Cliente</label>
-                        <input type="text" id="idname" name="name" placeholder="Ingrese nombre">
-                    </div>
-                    <div class="grupo">
-                        <label for="direccion">Direccion</label>
-                        <input type="text" id="iddireccion" name="direccion"
-                            placeholder="Ingrese Direccion">
-                    </div>
-                    <div class="grupo">
-                        <label for="tel">Numero telefono</label>
-                        <input type="text" id="idtel" name="tel" placeholder="Ingrese su numero">
-                    </div>
-                    <div class="grupo">
-                        <label for="correo">Correo</label>
-                        <input type="text" id="idcorreo" name="correo" placeholder="John@Doe.com">
-                    </div>
-                    <div class="grupo">
-                        <label for="user">Tipo usuario</label>
-                        <input type="text" id="iduser" name="user" placeholder="Ingrese tipo usuario">
-                    </div>
-                    <div class="grupo">
-                        <label for="date">Fecha</label>
-                        <input type="date" id="iddate" name="date">
-                    </div>
-
-                    
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="form" >
+                        {% csrf_token %}
+                        {{form}}
                     <input type="submit" onclick = 'return enviarformcliente();'  value="Confirmar Cambios">
                     <p class="warnings" id="warnings"></p>
                 </div>

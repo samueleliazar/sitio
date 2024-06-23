@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Producto
-from .forms import ProductoForm, UpdateProductoForm
+from .models import Producto, Persona
+from .forms import ProductoForm, UpdateProductoForm, UpdatePersonaForm
 from django.contrib import messages
 from os import path, remove
 from django.conf import settings
@@ -36,14 +36,53 @@ def dashboard(request):
 def editarcompra(request):
     return render(request,'aplicacion/editarcompra.html')
 
-def usuarios(request):
-    return render(request,'aplicacion/usuarios.html')
+def elimcliente(request, id):
+    persona=get_object_or_404(Persona, rut=id)
+    
+    datos={
+        "persona":persona
+    }
+    
+    if request.method=="POST":
+        if persona.imagen:
+            persona.delete()
+            messages.error(request, 'Persona eliminado exitosamente')
+            return redirect(to='usuarios')
+    return render(request, 'aplicacion/elimcliente.html',datos)
+        
 
-def editarcliente(request):
-    return render(request,'aplicacion/editarcliente.html')
+def usuarios(request):
+    
+    personas=Persona.objects.all()
+    
+    datos={
+        
+        "persona":personas
+    }
+    
+    return render(request,'aplicacion/usuarios.html', datos)
+
+def editarcliente(request, id):
+    persona=get_object_or_404(Persona, rut=id)
+    
+    form=UpdatePersonaForm(instance=persona)
+    datos={
+        "form":form,
+        "persona":persona
+    }
+    
+    if request.method=="POST":
+        form=UpdatePersonaForm(data=request.POST, files=request.FILES, instance=persona)
+        if form.is_valid():
+            form.save()
+            messages.warning(request, 'Cliente modificado')
+            return redirect(to='usuarios')
+        
+    return render(request,'aplicacion/editarcliente.html', datos)
 
 def estadisticas(request):
     return render(request,'aplicacion/estadisticas.html')
+
 
 def editprod(request, id):
     producto=get_object_or_404(Producto, id=id)

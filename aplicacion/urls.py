@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf.urls.static import static
 
 from sitio import settings
-from .views import index, productos, contacto, comprar, pedidos, login, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, estadisticas, nuevosproductos, catalogo, editprod, eliminarprod
+from .views import index, productos, contacto, comprar, pedidos, login, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, estadisticas, nuevosproductos, catalogo, editprod, eliminarprod, elimcliente
 
 urlpatterns = [
     path('',index,name='index'),
@@ -16,12 +16,14 @@ urlpatterns = [
     path('dashboard/',dashboard,name='dashboard'),
     path('editarcompra/',editarcompra,name='editarcompra'),
     path('usuarios/',usuarios,name='usuarios'),
-    path('editarcliente/',editarcliente,name='editarcliente'),
+    path('editarcliente/<id>',editarcliente,name='editarcliente'),
     path('estadisticas/',estadisticas,name='estadisticas'),
     path('nuevosproductos/',nuevosproductos,name='nuevosproductos'),
     path('catalogo/', catalogo, name='catalogo'),
     path('editprod/<id>', editprod, name='editprod'),
-    path('eliminarprod/<id>',eliminarprod, name='eliminarprod')
+    path('eliminarprod/<id>',eliminarprod, name='eliminarprod'),
+    path('elimcliente/<id>', elimcliente, name='elimcliente'),
+
 ]
 
 if settings.DEBUG:
