@@ -1,16 +1,24 @@
 from django.shortcuts import render
 from .models import Producto, Persona
-from .forms import ProductoForm, UpdateProductoForm, UpdatePersonaForm
+from .forms import ProductoForm, UpdateProductoForm, UpdatePersonaForm, CustomUserCreationForm
 from django.contrib import messages
 from os import path, remove
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth import authenticate, login
 # Create your views here.
 def index(request):
     return render(request,'aplicacion/index.html')
 
 def productos(request):
-    return render(request,'aplicacion/productos.html')
+    
+    producto=Producto.objects.all()
+    
+    datos={
+        "producto":producto
+    }
+    
+    return render(request,'aplicacion/productos.html', datos)
 
 def contacto(request):
     return render(request,'aplicacion/contacto.html')
@@ -28,7 +36,21 @@ def olvidocon(request):
     return render(request,'aplicacion/olvidocon.html')
 
 def usuariosnuevos(request):
-    return render(request,'aplicacion/usuariosnuevos.html')
+    data = {
+        'form': CustomUserCreationForm()
+    }
+    
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
+            messages.success(request, "Se ha registrado correctamente!")
+            return redirect(to='login')
+        data["form"] = formulario
+        
+    return render(request,'registration/usuariosnuevos.html', data)
 
 def dashboard(request):
     return render(request,'aplicacion/dashboard.html')
