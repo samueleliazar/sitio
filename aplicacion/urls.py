@@ -16,13 +16,13 @@ urlpatterns = [
     path('dashboard/',dashboard,name='dashboard'),
     path('editarcompra/',editarcompra,name='editarcompra'),
     path('usuarios/',usuarios,name='usuarios'),
-    path('editarcliente/<id>',editarcliente,name='editarcliente'),
+    path('editarcliente/<int:id>/',editarcliente,name='editarcliente'),
     path('estadisticas/',estadisticas,name='estadisticas'),
     path('nuevosproductos/',nuevosproductos,name='nuevosproductos'),
     path('catalogo/', catalogo, name='catalogo'),
     path('editprod/<id>', editprod, name='editprod'),
     path('eliminarprod/<id>',eliminarprod, name='eliminarprod'),
-    path('elimcliente/<id>', elimcliente, name='elimcliente'),
+    path('elimcliente/', elimcliente, name='elimcliente'),
  
 
 ]

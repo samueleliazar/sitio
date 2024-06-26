@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    {% if perms.aplicacion.add_producto %}
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
@@ -49,7 +50,7 @@
             <li class="logout">
                 <a href={% url "index" %}>
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar sesion</span>
+                    <span>Volver a index</span>
                 </a>
             </li>
         </ul>
@@ -98,6 +99,7 @@
     
  
     <script src={% static "../static/js/api.js"%}></script>
+    {% endif %}
 </body>
 
 </html>

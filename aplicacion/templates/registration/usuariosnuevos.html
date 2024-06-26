@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,10 +11,10 @@
     
 </head>
 <body>
-    {% load crispy_forms_tags %}
+
     <section class="form-register">
         <h4>Formulario Registro</h4>
-        <form onsubmit="return validarFormulario()">
+        <form action= "" method="post">
             <form method="post">
                 {% csrf_token %}
                 {{form | crispy}}

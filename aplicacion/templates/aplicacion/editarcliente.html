@@ -70,7 +70,7 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="form" >
                         {% csrf_token %}
-                        {{form}}
+                        {{ form.as_p }}
                     <input type="submit" onclick = 'return enviarformcliente();'  value="Confirmar Cambios">
                     <p class="warnings" id="warnings"></p>
                 </div>

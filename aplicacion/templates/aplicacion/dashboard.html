@@ -11,35 +11,46 @@
 </head>
 
 <body>
+    {% if perms.aplicacion.add_producto %}
+    {% if perms.aplicacion.add_persona %}
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
+
             <li class="active">
                 <a href="#">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
+
             </li>
             <li>
+
                 <a href={% url "usuarios" %}>
                     <i class="fas fa-user"></i>
                     <span>Usuarios</span>
                 </a>
+
             </li>
             <li>
+
                 <a href={% url "estadisticas" %}>
                     <i class="fas fa-chart-bar"></i>
                     <span>Estadisticas</span>
                 </a>
+
             </li>
             <li>
+
                 <a href={% url "nuevosproductos" %}>
                     <i class="fas fa-star"></i>
                     <span>Productos</span>
                 </a>
+
             </li>
         </li>
             <li>
+
                 <a href={% url "catalogo" %}>
                 <i class="fas fa-barcode"></i>
                 <span>Catalogo</span>
@@ -48,7 +59,7 @@
             <li class="logout">
                 <a href={% url "index" %}>
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar sesion</span>
+                    <span>Volver a index</span>
                 </a>
             </li>
         </ul>
@@ -165,7 +176,6 @@
                             <td>Pagado</td>
                             <td><a href={% url "editarcompra" %}>Editar</a></td>
                         </tr>
-                        
                     </tbody>
                 </table>
                 
@@ -174,5 +184,6 @@
     </div>
     <script src={% static "../static/js/api.js"%}></script>
 </body>
-
+    {% endif %}
+    {% endif %}
 </html>

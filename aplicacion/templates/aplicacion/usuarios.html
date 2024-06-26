@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    {% if perms.aplicacion.add_persona %}
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
@@ -51,7 +52,7 @@
             <li class="logout">
                 <a href={% url "index" %}>
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar sesion</span>
+                    <span>Volver a index</span>
                 </a>
             </li>
         </ul>
@@ -75,27 +76,25 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Rut</th>
+                            <th>Id</th>
+                            <th>Nombre de usuario</th>
+                            <th>Correo </th>
+                            <th>Apellido</th>
                             <th>Nombre</th>
-                            <th>Apellido </th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
-                            <th>Correo</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
 
                             <tbody>
-                                {%for pe in persona %}
+                                {% for user in users %}
                                 <tr>
-                                    <td>{{pe.rut}}</td>
-                                    <td>{{pe.nombre}}</td>
-                                    <td>{{pe.apellido}}</td>
-                                    <td>{{pe.direccion}}</td>
-                                    <td>{{pe.telefono}}</td>
-                                    <td>{{pe.correo}}</td>
-                                    <td><a class="btn btn-primary" href="{% url "editarcliente" pe.rut %}" role="button" >Editar</a></td>
-                                    <td><a class="btn btn-primary" href="{% url "elimcliente" pe.rut %}" role="button" >Eliminar</a></td>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.last_name }}</td>
+                                    <td>{{ user.first_name }}</td>
+                                    <td><a class="btn btn-primary" href="{% url "editarcliente" user.id %}" role="button" >Editar</a></td>
+                                    <td><a class="btn btn-primary" href="{% url "elimcliente"  %}" role="button" >Eliminar</a></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -104,5 +103,5 @@
          
             <script src={% static "../static/js/api.js"%}></script>
         </body>
-        
+        {% endif %}
         </html>

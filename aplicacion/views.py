@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from .models import Producto, Persona
-from .forms import ProductoForm, UpdateProductoForm, UpdatePersonaForm, CustomUserCreationForm
+from .models import Producto
+from .forms import ProductoForm, UpdateProductoForm, CustomUserCreationForm, CustomUserChangeForm
 from django.contrib import messages
 from os import path, remove
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth import login
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 # Create your views here.
 def index(request):
     return render(request,'aplicacion/index.html')
@@ -17,7 +19,6 @@ def productos(request):
     datos={
         "producto":producto
     }
-    
     return render(request,'aplicacion/productos.html', datos)
 
 def contacto(request):
@@ -36,7 +37,7 @@ def olvidocon(request):
     return render(request,'aplicacion/olvidocon.html')
 
 def usuariosnuevos(request):
-    data = {
+    data= {
         'form': CustomUserCreationForm()
     }
     
@@ -46,10 +47,9 @@ def usuariosnuevos(request):
             formulario.save()
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
             login(request, user)
-            messages.success(request, "Se ha registrado correctamente!")
-            return redirect(to='login')
+            messages.success(request, "Registro hecho correctamente")
+            return redirect(to="index")
         data["form"] = formulario
-        
     return render(request,'registration/usuariosnuevos.html', data)
 
 def dashboard(request):
@@ -58,49 +58,25 @@ def dashboard(request):
 def editarcompra(request):
     return render(request,'aplicacion/editarcompra.html')
 
-def elimcliente(request, id):
-    persona=get_object_or_404(Persona, rut=id)
-    
-    datos={
-        "persona":persona
-    }
-    
-    if request.method=="POST":
-        if persona.imagen:
-            persona.delete()
-            messages.error(request, 'Persona eliminado exitosamente')
-            return redirect(to='usuarios')
-    return render(request, 'aplicacion/elimcliente.html',datos)
+def elimcliente(request):
+
+    return render(request, 'aplicacion/elimcliente.html')
         
 
 def usuarios(request):
-    
-    personas=Persona.objects.all()
-    
-    datos={
-        
-        "persona":personas
-    }
-    
-    return render(request,'aplicacion/usuarios.html', datos)
+    users = User.objects.all()
+    return render(request,'aplicacion/usuarios.html', {'users': users})
 
 def editarcliente(request, id):
-    persona=get_object_or_404(Persona, rut=id)
-    
-    form=UpdatePersonaForm(instance=persona)
-    datos={
-        "form":form,
-        "persona":persona
-    }
-    
-    if request.method=="POST":
-        form=UpdatePersonaForm(data=request.POST, files=request.FILES, instance=persona)
+    user = get_object_or_404(User, pk=id)
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            messages.warning(request, 'Cliente modificado')
-            return redirect(to='usuarios')
-        
-    return render(request,'aplicacion/editarcliente.html', datos)
+            return redirect('usuarios')
+    else:
+        form = CustomUserChangeForm(instance=user)
+    return render(request,'aplicacion/editarcliente.html',{'form': form, 'user': user})
 
 def estadisticas(request):
     return render(request,'aplicacion/estadisticas.html')

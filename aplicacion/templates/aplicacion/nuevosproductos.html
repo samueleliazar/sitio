@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    {% if perms.aplicacion.add_producto %}
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
@@ -52,7 +53,7 @@
             <li class="logout">
                 <a href={% url "index" %}>
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Cerrar sesion</span>
+                    <span>Volver a index</span>
                 </a>
             </li>
         </ul>
@@ -73,6 +74,7 @@
         <div class="container">
             <h1>Administración de Productos</h1>
             <form action="" method="post" enctype="multipart/form-data">
+                
                 <div class="form" >
                     {% csrf_token %}
                     {{form | crispy}}
@@ -84,6 +86,8 @@
         </div> 
     </div>    
     <script src={% static "../static/js/validaredit.js"%}></script>
+    {% endif %}
 </body>
+
 
 </html>

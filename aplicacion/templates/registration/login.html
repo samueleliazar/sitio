@@ -23,7 +23,9 @@
             </label>
             <ul>
                 <li><a href={% url "index" %}>Inicio</a></li>
+                {% if user.is_superuser %}
                 <li><a href={% url "dashboard" %}>Admin</a></li>
+                {% endif %}
                 <li><a href={% url "login" %}><img src={% static "../static/images/klipartz.com.png"%} alt=""></a></li>
             </ul>
         </nav>
@@ -34,15 +36,16 @@
         <form method="post">
             {% csrf_token %}
             {{form | crispy}}
-            <input type="submit" onclick = 'return enviarformlogin();' value="iniciar">
+            <input type="submit"value="iniciar">
             <p class="warnings" id="warnings"></p>
             <div class="registrarse">
                 Quiero hacer el <a href={% url "usuariosnuevos" %}>registro</a>
             </div>
+
         </form>
         <div id = 'error'></div>
     </div>
-    <script src={% static "../static/js/validaredit.js"%}></script>
+
 
 </body>
 
