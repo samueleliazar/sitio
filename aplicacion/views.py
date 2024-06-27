@@ -136,9 +136,9 @@ def eliminarprod(request, id):
     }
     
     if request.method=="POST":
-        if productos.imagen:
-            remove(path.join(str(settings.MEDIA_ROOT).replace('/media','')+productos.imagen.url))
-        productos.delete()
+        if producto.imagen:
+            remove(path.join(str(settings.MEDIA_ROOT).replace('/media','')+producto.imagen.url))
+        producto.delete()
         messages.error(request, 'Producto eliminado exitosamente')
         return redirect(to='catalogo')
     
