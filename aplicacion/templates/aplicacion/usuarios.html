@@ -94,7 +94,7 @@
                                     <td>{{ user.last_name }}</td>
                                     <td>{{ user.first_name }}</td>
                                     <td><a class="btn btn-primary" href="{% url "editarcliente" user.id %}" role="button" >Editar</a></td>
-                                    <td><a class="btn btn-primary" href="{% url "elimcliente"  %}" role="button" >Eliminar</a></td>
+                                    <td><a class="btn btn-primary" href="{% url "elimcliente" user.id %}" role="button" >Eliminar</a></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

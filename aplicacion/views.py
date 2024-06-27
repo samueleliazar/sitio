@@ -58,9 +58,12 @@ def dashboard(request):
 def editarcompra(request):
     return render(request,'aplicacion/editarcompra.html')
 
-def elimcliente(request):
-
-    return render(request, 'aplicacion/elimcliente.html')
+def elimcliente(request, usuario_id):
+    usuario = get_object_or_404(User, pk=usuario_id)
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('usuarios')  
+    return render(request, 'aplicacion/elimcliente.html', {'usuario': usuario})
         
 
 def usuarios(request):

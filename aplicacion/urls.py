@@ -22,7 +22,7 @@ urlpatterns = [
     path('catalogo/', catalogo, name='catalogo'),
     path('editprod/<id>', editprod, name='editprod'),
     path('eliminarprod/<id>',eliminarprod, name='eliminarprod'),
-    path('elimcliente/', elimcliente, name='elimcliente'),
+    path('elimcliente/<int:usuario_id>/', elimcliente, name='elimcliente'),
  
 
 ]
