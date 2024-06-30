@@ -9,20 +9,48 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Detalle del Pedido #{{ pedido.id }}</h1>
-    <p><strong>Usuario:</strong> {{ pedido.user.username }}</p>
-    <p><strong>Fecha:</strong> {{ pedido.fecha }}</p>
-    <p><strong>Total:</strong> ${{ pedido.total }}</p>
-    
-    <h2>Productos:</h2>
-    <ul>
+    <style>
+        body {
+            background-color: #2e2b3d; 
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            width: 100%;
+        }
+        a {
+            color: #1e90ff; 
+        }
+        a:hover {
+            color: #ff6347; 
+        }
+    </style>
+</body>
+<div class="card" style="width: 18rem;">
+                <div class="p-5 border rounded">
+        <h2>Detalle del Pedido #{{ pedido.id }}</h2>
+
+      <h6 class="card-subtitle mb-2 text-muted"><strong>Usuario:</strong> {{ pedido.user.username }}</h6>
+      <h6 class="card-subtitle mb-2 text-muted"><strong>Fecha:</strong> {{ pedido.fecha }}</h6>
+      <h6 class="card-subtitle mb-2 text-muted"><strong>Total:</strong> ${{ pedido.total }}</h6>
+      <h2>Productos</h2>
+      <ul>
         {% for detalle in detalles %}
             <li>
                 {{ detalle.producto.nombre }} - {{ detalle.cantidad }} x ${{ detalle.precio }} = ${{ detalle.total }}
             </li>
         {% endfor %}
     </ul>
-
-    <a href="{% url 'productos' %}">Volver a Productos</a>
-</body>
+    <a href="{% url 'index' %}">Volver a index</a>
+    </div>
+  </div>
 </html>

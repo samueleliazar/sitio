@@ -52,26 +52,21 @@
         </div>
 
     </div>
-    <!-- Button to Open the Modal -->
     
 
-    <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Importante</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <!-- Modal body -->
                 <div class="modal-body">
                     Esta seguro que desea eliminar a {{producto.nombre}} 
                 </div>
-
-                <!-- Modal footer -->
+                
                 <div class="modal-footer">
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
