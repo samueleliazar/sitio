@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .Carrito import Carrito
-from .models import Producto
+from .models import Producto, Pedido
 from .forms import ProductoForm, UpdateProductoForm, CustomUserCreationForm, CustomUserChangeForm
 from django.contrib import messages
 from os import path, remove
@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -58,7 +59,12 @@ def usuariosnuevos(request):
     return render(request,'registration/usuariosnuevos.html', data)
 
 def dashboard(request):
-    return render(request,'aplicacion/dashboard.html')
+    compras_recientes = Pedido.objects.all()
+
+    context = {
+        'compras_recientes': compras_recientes,
+    }
+    return render(request,'aplicacion/dashboard.html', context)
 
 def editarcompra(request):
     return render(request,'aplicacion/editarcompra.html')
@@ -149,6 +155,7 @@ def eliminarprod(request, id):
     
     return render(request, 'aplicacion/eliminarprod.html',datos)
 
+
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = get_object_or_404(Producto, id=producto_id)
@@ -167,8 +174,35 @@ def restar_producto(request, producto_id):
     carrito.restar(producto)
     return redirect(to="productos")
 
+
 def limpiar_carrito(request):
     carrito = Carrito(request)
     carrito.limpiar()
     return redirect(to="productos")
 
+def realizar_compra(request):
+    carrito = Carrito(request)
+    pedido = carrito.procesar_compra(request.user)
+    if pedido:
+        messages.success(request, 'Compra realizada exitosamente')
+        return redirect('detalle_pedido', pedido_id=pedido.id)
+    else:
+        messages.error(request, 'No hay productos en el carrito')
+    return redirect(to="productos")
+
+def detalle_pedido(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id, user=request.user)
+    items = pedido.pedidoproducto_set.all()
+    detalles = []
+    for item in items:
+        detalles.append({
+            'producto': item.producto,
+            'cantidad': item.cantidad,
+            'precio': item.precio,
+            'total': item.cantidad * item.precio
+        })
+    return render(request, 'aplicacion/detalle_pedido.html', {'pedido': pedido, 'detalles': detalles})
+
+def lista_pedidos(request):
+    pedidos = Pedido.objects.filter(user=request.user)
+    return render(request, 'aplicacion/lista_pedidos.html', {'pedidos': pedidos})

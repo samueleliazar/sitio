@@ -1,3 +1,4 @@
+from .models import Producto, Pedido, PedidoProducto
 class Carrito:
     def __init__(self, request):
         self.request = request
@@ -42,3 +43,25 @@ class Carrito:
     def limpiar(self):
         self.session["carrito"] = {}
         self.session.modified = True
+        
+    def procesar_compra(self, user):
+        if not self.carrito:
+            return None
+        
+        pedido = Pedido.objects.create(user=user, total=self.total_carrito())
+        for key, value in self.carrito.items():
+            producto = Producto.objects.get(id=value["producto_id"])
+            PedidoProducto.objects.create(
+                pedido=pedido,
+                producto=producto,
+                cantidad=value["cantidad"],
+                precio=value["acumulado"]
+            )
+        self.limpiar()
+        return pedido
+
+    def total_carrito(self):
+        total = 0
+        for key, value in self.carrito.items():
+            total += int(value["acumulado"])
+        return total

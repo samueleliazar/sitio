@@ -125,57 +125,25 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Fecha</th>
-                            <th>Tipo de pago</th>
-                            <th>Nombre</th>
-                            <th>Monto</th>
-                            <th>Categoria</th>
+                            <th>Total</th>
                             <th>Estado</th>
-                            <th>Accion</th>
+
                             
                         </tr>
                     </thead>
                     <tbody>
+                        {% for compra in compras_recientes %}
                         <tr>
-                            <td>
-                                2024-04-08
-                            </td>
-                            <td>Debito</td>
-                            <td>Cargador rapido para iphone</td>
-                            <td>$20.000</td>
-                            <td>Iphone</td>
-                            <td>Pendiente</td>
-                            <td><a href={% url "editarcompra" %}>Editar</a></td>
+                            <td>{{ compra.id }}</td>
+                            <td>{{ compra.fecha }}</td>
+                            <td>{{ compra.total }}</td>
+                            <td>{{ compra.estado }}</td>
+
                         
                         </tr>
-                        
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td>
-                                2024-04-10
-                            </td>
-                            <td>Debito</td>
-                            <td>Apple pencil</td>
-                            <td>$156.879</td>
-                            <td>Ipad</td>
-                            <td>Pagado</td>
-                            <td><a href={% url "editarcompra" %}>Editar</a></td>
-                        </tr>
-                        
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td>
-                                2024-04-12
-                            </td>
-                            <td>Credito</td>
-                            <td>Audifonos Airpod</td>
-                            <td>$5.000</td>
-                            <td>Iphone</td>
-                            <td>Pagado</td>
-                            <td><a href={% url "editarcompra" %}>Editar</a></td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 
