@@ -1,8 +1,10 @@
 from django.urls import path
 from django.conf.urls.static import static
 
+
+
 from sitio import settings
-from .views import index, productos, contacto, comprar, pedidos, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, estadisticas, nuevosproductos, catalogo, editprod, eliminarprod, elimcliente
+from .views import index, productos, contacto, comprar, pedidos, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, estadisticas, nuevosproductos, catalogo, editprod, eliminarprod, elimcliente, agregar_producto, eliminar_producto, restar_producto, limpiar_carrito
 
 urlpatterns = [
     path('',index,name='index'),
@@ -23,6 +25,11 @@ urlpatterns = [
     path('editprod/<id>', editprod, name='editprod'),
     path('eliminarprod/<id>',eliminarprod, name='eliminarprod'),
     path('elimcliente/<int:usuario_id>/', elimcliente, name='elimcliente'),
+    path('agregar/<int:producto_id>/', agregar_producto, name="add"),
+    path('eliminar/<int:producto_id>/', eliminar_producto, name="del"),
+    path('restar/<int:producto_id>/', restar_producto, name="sub"),
+    path('limpiar/', limpiar_carrito, name="CLS"),
+
  
 
 ]

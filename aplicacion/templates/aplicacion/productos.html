@@ -6,46 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{% static '../static/css/productos.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/productos.css' %}">
     <title>Carro</title>
 </head>
 <body>
     <header class="header">
-        
         <div class="menu contt">
             <input type="checkbox" id="menu" />
             <label for="menu">
-                <img src={% static "../static/images/menu.png"%} class="menu-icono" alt="menu">
+                <img src={% static "images/menu.png" %} class="menu-icono" alt="menu">
             </label>
             <nav class="navbar">
-            <input type="checkbox" id="menu">
                 <ul>
                     <li><a href={% url "index" %}>Inicio</a></li>
                     <li><a href={% url "productos" %}>Productos</a></li>
-                    <li><a href={% url "login" %}><img src={% static "../static/images/klipartz.com.png"%} alt=""></a></li>
+                    <li><a href={% url "login" %}><img src={% static "images/klipartz.com.png" %} alt=""></a></li>
                 </ul>
             </nav>
-            
-            
         </div>
         <h1>Productos</h1>
     </header>
     <section class="contenedor">
-
         <div class="contenedor-items">
-            {%for pa in producto %}
+            {% for pa in producto %}
             <div class="item">
-                <span class="titulo-item" alt={{pa.nombre}} > </span>
-                <img src='{{pa.imagen.url}}' alt={{pa.nombre}} class="img-item">
-                <span class="precio-item">{{pa.precio}}</span>
-                <button class="boton-item">Agregar al Carrito</button>
+                <span class="titulo-item" alt="{{ pa.nombre }}"></span>
+                <img src="{{ pa.imagen.url }}" alt="{{ pa.nombre }}" class="img-item">
+                <span class="precio-item">{{ pa.precio }}</span>
+                 <a href="{% url 'add' pa.id %}">Agregar al carrito</a>
             </div>
             {% endfor %}
-            </div>
-
-            </div>
         </div>
+        {% include "aplicacion/carrito.html" %}
     </section>
 </body>
 </html>

@@ -123,5 +123,51 @@ header h1{
     border-radius: 5px;
     cursor: pointer;
 }
+.carrito-container {
+    background-color: #1b1b1b; /* Fondo oscuro para todo el contenedor */
+    padding: 20px;
+    border-radius: 10px;
+    color: white; /* Color de texto blanco */
+}
+
+.carrito-table {
+    width: 100%;
+    color: white; /* Color de texto blanco */
+}
+
+.carrito-table th,
+.carrito-table td {
+    text-align: center;
+    padding: 10px;
+}
+
+.carrito-buttons {
+    margin-top: 20px;
+}
+
+.carrito-buttons .btn {
+    width: 100%;
+    font-size: 18px;
+}
+
+.carrito-table thead th {
+    background-color: #343a40; /* Fondo oscuro para encabezados */
+    color: white; /* Color de texto blanco */
+}
+
+.carrito-table tbody td {
+    background-color: #2c2c2c; /* Fondo oscuro para celdas */
+    color: white; /* Color de texto blanco */
+}
+
+.carrito-buttons .btn-danger {
+    background-color: #dc3545; /* Fondo rojo para botón de limpiar */
+    border-color: #dc3545;
+}
+
+.carrito-buttons .btn-success {
+    background-color: #28a745; /* Fondo verde para botón de guardar */
+    border-color: #28a745;
+}
 
 

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .Carrito import Carrito
 from .models import Producto
 from .forms import ProductoForm, UpdateProductoForm, CustomUserCreationForm, CustomUserChangeForm
 from django.contrib import messages
@@ -8,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+
 # Create your views here.
 def index(request):
     return render(request,'aplicacion/index.html')
@@ -23,6 +25,9 @@ def productos(request):
 
 def contacto(request):
     return render(request,'aplicacion/contacto.html')
+
+def carrito(request):
+    return render(request, 'aplicacion/carrito.html')
 
 def comprar(request):
     return render(request,'aplicacion/comprar.html')
@@ -143,3 +148,27 @@ def eliminarprod(request, id):
         return redirect(to='catalogo')
     
     return render(request, 'aplicacion/eliminarprod.html',datos)
+
+def agregar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = get_object_or_404(Producto, id=producto_id)
+    carrito.agregar(producto)
+    return redirect(to="productos")
+
+def eliminar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = get_object_or_404(Producto, id=producto_id)
+    carrito.eliminar(producto)
+    return redirect(to="productos")
+
+def restar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = get_object_or_404(Producto, id=producto_id)
+    carrito.restar(producto)
+    return redirect(to="productos")
+
+def limpiar_carrito(request):
+    carrito = Carrito(request)
+    carrito.limpiar()
+    return redirect(to="productos")
+
