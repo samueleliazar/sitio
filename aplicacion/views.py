@@ -159,7 +159,10 @@ def eliminarprod(request, id):
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = get_object_or_404(Producto, id=producto_id)
-    carrito.agregar(producto)
+    if carrito.carrito.get(str(producto.id), {}).get('cantidad', 0) < producto.cantidad_maxima:
+        carrito.agregar(producto)
+    else:
+        messages.error(request, f'No puedes agregar más de {producto.cantidad_maxima} unidades de este producto.')
     return redirect(to="productos")
 
 def eliminar_producto(request, producto_id):
@@ -206,3 +209,17 @@ def detalle_pedido(request, pedido_id):
 def lista_pedidos(request):
     pedidos = Pedido.objects.filter(user=request.user)
     return render(request, 'aplicacion/lista_pedidos.html', {'pedidos': pedidos})
+
+def cambiar_estado_pedido(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id)
+    
+    if request.method == 'POST':
+        nuevo_estado = request.POST.get('estado')
+        if nuevo_estado in dict(Pedido.ESTADOS_PEDIDO):
+            pedido.estado = nuevo_estado
+            pedido.save()
+            messages.success(request, 'El estado del pedido ha sido actualizado.')
+        else:
+            messages.error(request, 'Estado no válido.')
+
+    return redirect(to="dashboard")

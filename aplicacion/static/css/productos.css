@@ -151,23 +151,54 @@ header h1{
 }
 
 .carrito-table thead th {
-    background-color: #343a40; /* Fondo oscuro para encabezados */
-    color: white; /* Color de texto blanco */
+    background-color: #343a40; 
+    color: white; 
 }
 
 .carrito-table tbody td {
-    background-color: #2c2c2c; /* Fondo oscuro para celdas */
-    color: white; /* Color de texto blanco */
+    background-color: #2c2c2c; 
+    color: white; 
 }
 
 .carrito-buttons .btn-danger {
-    background-color: #dc3545; /* Fondo rojo para botón de limpiar */
+    background-color: #dc3545; 
     border-color: #dc3545;
 }
 
 .carrito-buttons .btn-success {
-    background-color: #28a745; /* Fondo verde para botón de guardar */
+    background-color: #28a745; 
     border-color: #28a745;
 }
 
+.messages {
+    margin: 20px 0;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 14px; /* Reduce el tamaño de la fuente */
+    max-width: 300px; /* Ajusta el ancho máximo */
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.carrito-mensajes {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 

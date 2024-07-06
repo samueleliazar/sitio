@@ -1,5 +1,6 @@
 from django.urls import path
 from django.conf.urls.static import static
+from . import views
 
 
 
@@ -32,7 +33,7 @@ urlpatterns = [
     path('realizar_compra/', realizar_compra, name="realizar_compra"),
     path('detalle_pedido/<int:pedido_id>/', detalle_pedido, name='detalle_pedido'),
     path('mis_pedidos/', lista_pedidos, name='lista_pedidos'),
- 
+    path('cambiar_estado_pedido/<int:pedido_id>/', views.cambiar_estado_pedido, name='cambiar_estado_pedido'),
 
 ]
 

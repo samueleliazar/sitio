@@ -27,18 +27,34 @@
         </div>
         <h1>Productos</h1>
     </header>
+    
     <section class="contenedor">
         <div class="contenedor-items">
             {% for pa in producto %}
             <div class="item">
-                <span class="titulo-item" alt="{{ pa.nombre }}"></span>
+                <span class="titulo-item" alt="{{ pa.nombre }}">{{ pa.nombre }}</span>
                 <img src="{{ pa.imagen.url }}" alt="{{ pa.nombre }}" class="img-item">
                 <span class="precio-item">{{ pa.precio }}</span>
-                 <a href="{% url 'add' pa.id %}">Agregar al carrito</a>
+                 <a href="{% url 'add' pa.id %}" class="btn btn-primary">Agregar al carrito</a>
             </div>
             {% endfor %}
         </div>
-        {% include "aplicacion/carrito.html" %}
+        <div class="carrito-contenedor">
+            {% include "aplicacion/carrito.html" %}
+            <div class="carrito-mensajes">
+                <!-- Bloque para mostrar mensajes -->
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </section>
+    
 </body>
 </html>

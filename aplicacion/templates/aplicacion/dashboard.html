@@ -129,8 +129,7 @@
                             <th>Fecha</th>
                             <th>Total</th>
                             <th>Estado</th>
-
-                            
+                            <th>Ver detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -139,17 +138,26 @@
                             <td>{{ compra.id }}</td>
                             <td>{{ compra.fecha }}</td>
                             <td>{{ compra.total }}</td>
-                            <td>{{ compra.estado }}</td>
-
-                        
+                            <td>
+                                <form action="{% url 'cambiar_estado_pedido' compra.id %}" method="post">
+                                    {% csrf_token %}
+                                    <select name="estado">
+                                        {% for estado in compra.ESTADOS_PEDIDO %}
+                                        <option value="{{ estado.0 }}" {% if estado.0 == compra.estado %}selected{% endif %}>
+                                            {{ estado.1 }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit">Actualizar</button>
+                                </form>
+                            </td>
+                            <td><a class="" href="{% url "detalle_pedido" compra.id %}" role="button">Ver detalle</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                
             </div>
         </div>
-    </div>
     <script src={% static "../static/js/api.js"%}></script>
 </body>
     {% endif %}

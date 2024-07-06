@@ -1,4 +1,5 @@
 from .models import Producto, Pedido, PedidoProducto
+from django.contrib import messages
 class Carrito:
     def __init__(self, request):
         self.request = request
@@ -17,8 +18,11 @@ class Carrito:
                 "cantidad": 1,
             }
         else:
-            self.carrito[id]["cantidad"] += 1
-            self.carrito[id]["acumulado"] += producto.precio
+            if self.carrito[id]["cantidad"] < producto.cantidad_maxima:
+                self.carrito[id]["cantidad"] += 1
+                self.carrito[id]["acumulado"] += producto.precio
+            else:
+                messages.error(self.request, 'Has alcanzado la cantidad máxima permitida para este producto.')
         self.guardar_carrito()
 
     def guardar_carrito(self):
