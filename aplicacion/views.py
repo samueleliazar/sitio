@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 def index(request):
@@ -58,6 +58,7 @@ def usuariosnuevos(request):
         data["form"] = formulario
     return render(request,'registration/usuariosnuevos.html', data)
 
+@permission_required('dashboard')
 def dashboard(request):
     compras_recientes = Pedido.objects.all()
 
@@ -69,6 +70,7 @@ def dashboard(request):
 def editarcompra(request):
     return render(request,'aplicacion/editarcompra.html')
 
+@permission_required('elimcliente')
 def elimcliente(request, usuario_id):
     usuario = get_object_or_404(User, pk=usuario_id)
     if request.method == 'POST':
@@ -76,11 +78,12 @@ def elimcliente(request, usuario_id):
         return redirect('usuarios')  
     return render(request, 'aplicacion/elimcliente.html', {'usuario': usuario})
         
-
+@permission_required('usuarios')
 def usuarios(request):
     users = User.objects.all()
     return render(request,'aplicacion/usuarios.html', {'users': users})
 
+@permission_required('editarcliente')
 def editarcliente(request, id):
     user = get_object_or_404(User, pk=id)
     if request.method == 'POST':
@@ -92,10 +95,11 @@ def editarcliente(request, id):
         form = CustomUserChangeForm(instance=user)
     return render(request,'aplicacion/editarcliente.html',{'form': form, 'user': user})
 
+@permission_required('estadisticas')
 def estadisticas(request):
     return render(request,'aplicacion/estadisticas.html')
 
-
+@permission_required('editprod')
 def editprod(request, id):
     producto=get_object_or_404(Producto, id=id)
     
@@ -113,7 +117,7 @@ def editprod(request, id):
             return redirect(to="catalogo")
         
     return render(request,'aplicacion/editprod.html', datos)
-
+@permission_required('nuevosproductos')
 def nuevosproductos(request):
     
     form=ProductoForm()
@@ -130,7 +134,7 @@ def nuevosproductos(request):
         "form":form
     }
     return render(request,'aplicacion/nuevosproductos.html', datos)
-
+@permission_required('catalogo')
 def catalogo(request):
     producto=Producto.objects.all()
     
@@ -138,7 +142,7 @@ def catalogo(request):
         "producto":producto
     }
     return render(request, 'aplicacion/catalogo.html', datos)
-
+@permission_required('eliminarprod')
 def eliminarprod(request, id):
     producto=get_object_or_404(Producto, id=id)
     
@@ -155,7 +159,7 @@ def eliminarprod(request, id):
     
     return render(request, 'aplicacion/eliminarprod.html',datos)
 
-
+@login_required
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = get_object_or_404(Producto, id=producto_id)
@@ -164,20 +168,20 @@ def agregar_producto(request, producto_id):
     else:
         messages.error(request, f'No puedes agregar más de {producto.cantidad_maxima} unidades de este producto.')
     return redirect(to="productos")
-
+@login_required
 def eliminar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = get_object_or_404(Producto, id=producto_id)
     carrito.eliminar(producto)
     return redirect(to="productos")
-
+@login_required
 def restar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = get_object_or_404(Producto, id=producto_id)
     carrito.restar(producto)
     return redirect(to="productos")
 
-
+@login_required
 def limpiar_carrito(request):
     carrito = Carrito(request)
     carrito.limpiar()
