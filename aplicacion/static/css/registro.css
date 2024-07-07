@@ -14,7 +14,7 @@ body{
     background: white;
     padding: 30px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     border-radius: 4px;
     font-family: 'Poppins', sans-serif;
     color: #ff5a2c;
@@ -66,4 +66,73 @@ body{
     margin: 16px 0;
     font-size: 16px;
 
+}
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #ff6347;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form .helptext,
+form .errorlist {
+    color: #ff6347;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #e55342;
+}
+
+form .already-registered {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form .already-registered a {
+    color: #ff6347;
+    text-decoration: none;
+}
+
+form .already-registered a:hover {
+    text-decoration: underline;
 }
