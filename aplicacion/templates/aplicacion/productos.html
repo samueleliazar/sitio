@@ -20,7 +20,9 @@
                 <ul>
                     <li><a href={% url "index" %}>Inicio</a></li>
                     <li><a href={% url "productos" %}>Productos</a></li>
+                    {% if user.is_authenticated %}
                     <li><a href={% url "lista_pedidos" %}>Mis compras</a></li>
+                    {% endif %}
                     <li><a href={% url "login" %}><img src={% static "images/klipartz.com.png" %} alt=""></a></li>
                 </ul>
             </nav>
