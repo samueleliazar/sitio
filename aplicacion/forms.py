@@ -29,3 +29,8 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'is_active']
+        
+    def __init__(self, *args, **kwargs):
+        super(CustomUserChangeForm, self).__init__(*args, **kwargs)
+        if 'password' in self.fields:
+            del self.fields['password']
