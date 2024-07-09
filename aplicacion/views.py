@@ -95,9 +95,7 @@ def editarcliente(request, id):
         form = CustomUserChangeForm(instance=user)
     return render(request,'aplicacion/editarcliente.html',{'form': form, 'user': user})
 
-@permission_required('estadisticas')
-def estadisticas(request):
-    return render(request,'aplicacion/estadisticas.html')
+
 
 @permission_required('editprod')
 def editprod(request, id):

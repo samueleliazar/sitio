@@ -5,7 +5,7 @@ from . import views
 
 
 from sitio import settings
-from .views import index, productos, contacto, comprar, pedidos, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, estadisticas, nuevosproductos, catalogo, editprod, eliminarprod, elimcliente, agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, realizar_compra, detalle_pedido, lista_pedidos
+from .views import index, productos, contacto, comprar, pedidos, olvidocon, usuariosnuevos, dashboard, editarcompra, usuarios, editarcliente, nuevosproductos, catalogo, editprod, eliminarprod, elimcliente, agregar_producto, eliminar_producto, restar_producto, limpiar_carrito, realizar_compra, detalle_pedido, lista_pedidos
 
 urlpatterns = [
     path('',index,name='index'),
@@ -20,7 +20,6 @@ urlpatterns = [
     path('editarcompra/',editarcompra,name='editarcompra'),
     path('usuarios/',usuarios,name='usuarios'),
     path('editarcliente/<int:id>/',editarcliente,name='editarcliente'),
-    path('estadisticas/',estadisticas,name='estadisticas'),
     path('nuevosproductos/',nuevosproductos,name='nuevosproductos'),
     path('catalogo/', catalogo, name='catalogo'),
     path('editprod/<id>', editprod, name='editprod'),
